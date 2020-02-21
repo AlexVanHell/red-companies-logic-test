@@ -29,7 +29,7 @@ describe('fn function', () => {
 		const inputs = [10];
 
 		for (const input of inputs) {
-			expect(fn(input)).toBe('Bar');
+			expect(fn(input)).toBe('Bar*');
 		}
 	});
 
@@ -73,7 +73,7 @@ describe('fn function', () => {
 
 	test('is divisble by 3', () => {
 		const inputs = [15, 27, 30, 21, 246, 273];
-		const outputs = ['FooBarBar', 'FooQix', 'FooBarFoo', 'FooQix', 'Foo', 'FooQixQixFoo'];
+		const outputs = ['FooBarBar', 'FooQix', 'FooBarFoo*', 'FooQix', 'Foo', 'FooQixQixFoo'];
 
 		for (let i = 0; i < inputs.length; i++) {
 			expect(fn(inputs[i])).toBe(outputs[i]);
@@ -82,7 +82,7 @@ describe('fn function', () => {
 
 	test('is divisble by 5', () => {
 		const inputs = [15, 40, 65, 70, 85, 525];
-		const outputs = ['FooBarBar', 'Bar', 'BarBar', 'BarQixQix', 'BarBar', 'FooBarQixBarBar'];
+		const outputs = ['FooBarBar', 'Bar*', 'BarBar', 'BarQixQix*', 'BarBar', 'FooBarQixBarBar'];
 
 		for (let i = 0; i < inputs.length; i++) {
 			expect(fn(inputs[i])).toBe(outputs[i]);
@@ -91,7 +91,7 @@ describe('fn function', () => {
 
 	test('is divisble by 7', () => {
 		const inputs = [14, 42, 84, 70, 371];
-		const outputs = ['Qix', 'FooQix', 'FooQix', 'BarQixQix', 'QixFooQix'];
+		const outputs = ['Qix', 'FooQix', 'FooQix', 'BarQixQix*', 'QixFooQix'];
 
 		for (let i = 0; i < inputs.length; i++) {
 			expect(fn(inputs[i])).toBe(outputs[i]);
@@ -105,5 +105,12 @@ describe('fn function', () => {
 		for (let i = 0; i < inputs.length; i++) {
 			expect(fn(inputs[i])).toBe(outputs[i]);
 		}
+	});
+
+	test('"0" must be replaced by "*"', () => {
+		expect(fn(101)).toBe('1*1');
+		expect(fn(303)).toBe('FooFoo*Foo');
+		expect(fn(105)).toBe('FooBarQix*Bar');
+		expect(fn(10101)).toBe('FooQix**');
 	});
 });
