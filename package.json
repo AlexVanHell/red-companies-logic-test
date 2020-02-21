@@ -1,0 +1,19 @@
+{
+  "name": "red-companies-logic-test",
+  "version": "1.0.0",
+  "description": "Logic test project",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexVanHell/red-companies-logic-test.git"
+  },
+  "author": "Alejandro Villarroel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlexVanHell/red-companies-logic-test/issues"
+  },
+  "homepage": "https://github.com/AlexVanHell/red-companies-logic-test#readme"
+}
