@@ -4,9 +4,9 @@
   "description": "Logic test project",
   "main": "index.js",
   "scripts": {
+    "build": "babel src -d dist",
+    "start": "npm run build && node dist/index.js",
     "test": "jest",
-    "start": "node bin/dev",
-    "build": "mkdir dist && babel src -s -d dist",
     "dev": "nodemon --exec npm run babel-node -- ./index.js",
     "lint": "eslint"
   },
@@ -21,10 +21,9 @@
   },
   "homepage": "https://github.com/AlexVanHell/red-companies-logic-test#readme",
   "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.4",
     "@babel/preset-env": "^7.8.4",
-    "babel-cli": "^6.26.0",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-register": "^6.26.0",
     "jest": "^25.1.0"
   }
 }
