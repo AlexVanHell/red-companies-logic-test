@@ -1,8 +1,24 @@
 import { fn } from './fn';
 
 describe('fn function', () => {
+	test('send "ERROR, NOT A NUMBER" message if input is not a number', () => {
+		const inputs = ['hello', [], {}, null, undefined];
+
+		for (const input of inputs) {
+			expect(fn(input)).toBe('ERROR, NOT A NUMBER');
+		}
+	});
+
+	test('send "ERROR, NOT INTEGER" message if input is not an integer', () => {
+		const inputs = [0.2, 1.4, 45.78, 43.90];
+
+		for (const input of inputs) {
+			expect(fn(input)).toBe('ERROR, NOT INTEGER');
+		}
+	});
+
 	test('replace number with "Foo" if it is divisible by 3', () => {
-		const inputs = [3, 6 ,9];
+		const inputs = [6, 9, 12];
 
 		for (const input of inputs) {
 			expect(fn(input)).toBe('Foo');
@@ -10,7 +26,7 @@ describe('fn function', () => {
 	});
 
 	test('replace number with "Bar" if it is divisible by 5', () => {
-		const inputs = [5, 10];
+		const inputs = [10];
 
 		for (const input of inputs) {
 			expect(fn(input)).toBe('Bar');
@@ -18,7 +34,7 @@ describe('fn function', () => {
 	});
 
 	test('replace number with "Qix" if it is divisible by 7', () => {
-		const inputs = [7];
+		const inputs = [14];
 
 		for (const input of inputs) {
 			expect(fn(input)).toBe('Qix');
@@ -36,8 +52,8 @@ describe('fn function', () => {
 	});
 
 	test('for each digit "5" replace with "Bar"', () => {
-		const inputs = [5, 55, 555, 5555];
-		const outputs = ['Bar', 'BarBar', 'BarBarBar', 'BarBarBarBar'];
+		const inputs = [5, 55, 5555];
+		const outputs = ['Bar', 'BarBar', 'BarBarBarBar'];
 
 		for (let i = 0; i < inputs.length; i++) {
 			// As every element in inputs array is divisible by 5 it must add also another "Bar" at begining in each case
@@ -46,8 +62,8 @@ describe('fn function', () => {
 	});
 
 	test('for each digit "7" replace with "Qix"', () => {
-		const inputs = [7, 77, 777, 7777];
-		const outputs = ['Qix', 'QixQix', 'QixQixQix', 'QixQixQixQix'];
+		const inputs = [7, 77, 7777];
+		const outputs = ['Qix', 'QixQix', 'QixQixQixQix'];
 
 		for (let i = 0; i < inputs.length; i++) {
 			// As every element in inputs array is divisible by 7 it must add also another "Qix" at begining in each case
@@ -55,27 +71,36 @@ describe('fn function', () => {
 		}
 	});
 
-	test('test numbers divisble by 3', () => {
+	test('is divisble by 3', () => {
 		const inputs = [15, 27, 30, 21, 246, 273];
-		const outputs = ['FooBarBar', 'Foo', 'FooBarFoo', 'FooQix', 'Foo', 'FooQixQixFoo'];
+		const outputs = ['FooBarBar', 'FooQix', 'FooBarFoo', 'FooQix', 'Foo', 'FooQixQixFoo'];
 
 		for (let i = 0; i < inputs.length; i++) {
 			expect(fn(inputs[i])).toBe(outputs[i]);
 		}
 	});
 
-	test('test numbers divisble by 5', () => {
+	test('is divisble by 5', () => {
 		const inputs = [15, 40, 65, 70, 85, 525];
-		const outputs = ['FooBarBar', 'BarQix', 'BarBar', 'BarQix', 'BarQixBarBar'];
+		const outputs = ['FooBarBar', 'Bar', 'BarBar', 'BarQixQix', 'BarBar', 'FooBarQixBarBar'];
 
 		for (let i = 0; i < inputs.length; i++) {
 			expect(fn(inputs[i])).toBe(outputs[i]);
 		}
 	});
 
-	test('test numbers divisble by 7', () => {
+	test('is divisble by 7', () => {
 		const inputs = [14, 42, 84, 70, 371];
-		const outputs = ['Qix', 'FooQix', 'FooQix', 'BarQixQix', 'QixQix'];
+		const outputs = ['Qix', 'FooQix', 'FooQix', 'BarQixQix', 'QixFooQix'];
+
+		for (let i = 0; i < inputs.length; i++) {
+			expect(fn(inputs[i])).toBe(outputs[i]);
+		}
+	});
+
+	test('is not divisible by 3, 5 or 7', () => {
+		const inputs = [1, 2, 4, 8];
+		const outputs = ['1', '2', '4', '8'];
 
 		for (let i = 0; i < inputs.length; i++) {
 			expect(fn(inputs[i])).toBe(outputs[i]);
