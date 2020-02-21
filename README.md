@@ -4,6 +4,14 @@ This repository contains a logic test for Red Companies to apply for a Javascrip
 
 This project is using es6 features some es6 features that cannot be loaded normally so we are using babel to make the transpilation to a older javascript.
 
+## Install dependencies
+
+First we need to install our project dependencies as almost every node.js project. All dependencies are listed in `package.json` file
+
+```sh
+npm install
+```
+
 ## Run project
 
 ```sh
