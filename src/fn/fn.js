@@ -25,7 +25,21 @@ export function fn(param) {
 		}
 	}
 
-	resultStr += strNumber.split('').map(x => keys[x] || '')
+	const strArray = strNumber.split('');
+	const showDigits = Object.keys(keys).some(k => strArray.indexOf(k) > -1 || param % k === 0);
+
+	resultStr += strArray
+		.map(x => keys[x]
+			|| (
+				x === '0'
+					? '*'
+					: (
+						showDigits
+							? ''
+							: x
+					)
+			)
+		)
 		.join('');
 
 	if (resultStr === '') {
